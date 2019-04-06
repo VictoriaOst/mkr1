@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+ <script>
+
+ 	var text = prompt('');
+ 	
+ 	function js(text){
+
+        var char,  
+         	last, 
+         	stack = [];
+
+         for(var i = 0; i < text.length; i++) {
+             char = text[i];
+             if(char == "{" || char == "(" || char == "["){
+                 stack.push(char);
+                 last = char;
+             } else if (char == '}' || char == ')' || char == ']')
+             {
+                 if(last) {
+                     if((char == '}' && last == '}') || (char == ')' && last == '(') || (char == ']' && last == '['))
+                     {
+                         stack.pop();
+                         last = stack.length > 0 ? stack[stack.length - 1] : undefined;
+                     }
+                 }else {
+                     return false;
+                 }
+             }
+         }
+         return stack.length == 0;
+     }
+
+ 	console.log(js(text));
+ </script>
+</body>
+</html>
